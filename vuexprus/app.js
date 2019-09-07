@@ -24,6 +24,11 @@ mongoose.connect(db, { useNewUrlParser: true })
 .catch(err => {
   console.error(err.message)
 })
+
+const users = require('./routes/api/users')
+app.use('/api/users', users)
+
+
 const PORT = process.env.PORT || 5000
 
 /* app.get('/', (req, res) => {

@@ -28,7 +28,7 @@ router.post('/register', (req, res) => {
       msg: 'Password do not match'
     })
   }
-  //check for unique email
+  //check for unique username
   User.findOne({
     username: username
   }).then(user => {
@@ -37,6 +37,37 @@ router.post('/register', (req, res) => {
         msg: 'Username is already taken'
       })
     }
+  })
+  //check for unique email
+  User.findOne({
+      email: email
+    })
+    .then(user => {
+      if (user) {
+        return res.status(400).json({
+          msg: 'Email is already in use'
+        })
+      }
+    })
+  // the data is valid and we can register the user
+  let newUser = new User({
+    name,
+    username,
+    password,
+    email
+  })
+  // Hash the password
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err
+      newUser.password = hash
+      newUser.save().then(user => {
+        return res.status(201).json({
+          success: true,
+          msg: 'User was created'
+        })
+      })
+    })
   })
 })
 
