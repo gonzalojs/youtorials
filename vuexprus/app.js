@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const path = require('path')
 const cors = require('cors')
+const passport = require('passport')
 
 const app = express()
 
@@ -14,6 +15,11 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.use(express.static(path.join(__dirname, 'public')))
+
+//use the passport middleware
+app.use(passport.initialize())
+// Bring in the Passport Strategy
+require('./config/passport')(passport)
 
 //bring keys
 const db = require('./config/keys').mongoURL
