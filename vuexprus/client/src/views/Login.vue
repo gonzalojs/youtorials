@@ -7,14 +7,28 @@
           <h4>Login</h4>
         </div>
         <div class="card-body">
-          <form @submit.prevent="loginUser" action="">
+          <form @submit.prevent="loginUser" action>
             <div class="form-group">
               <label for="username">Username</label>
-              <input id="username" type="text" placeholder="Username" name="username" v-model="username" class="form-control">
+              <input
+                id="username"
+                type="text"
+                placeholder="Username"
+                name="username"
+                v-model="username"
+                class="form-control"
+              />
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" placeholder="Password" name="password" id="password" v-model="password">
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                name="password"
+                id="password"
+                v-model="password"
+              />
             </div>
             <input type="submit" class="btn btn-primary" value="Login" />
             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -27,43 +41,44 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 export default {
-  data(){
+  data() {
     return {
-      username: '',
-      password: ''
-    }
+      username: "",
+      password: ""
+    };
   },
   methods: {
-    ...mapActions(['login']),
-    loginUser(){
+    ...mapActions(["login"]),
+    loginUser() {
       let user = {
         username: this.username,
         password: this.password
-      }
+      };
       this.login(user)
-      .then(res => {
-        if(res.data.success){
-          this.$router.push('/profile')
-        }
-      }).catch(err => {
-        throw err
-      })
+        .then(res => {
+          if (res.data.success) {
+            this.$router.push("/profile");
+          }
+        })
+        .catch(err => {
+          throw err;
+        });
     }
-  },
-}
+  }
+};
 </script>
 
 <style>
-.card{
+.card {
   width: 60%;
   border-radius: 0;
 }
-.btn{
+.btn {
   border-radius: 0;
 }
-.form-control{
+.form-control {
   border-radius: 0;
 }
 </style>
