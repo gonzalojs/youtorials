@@ -7,7 +7,7 @@ module.exports = mongoose.model('User', Schema({
     types: String,
     required: true,
     validate: {
-      validate: function (text) {
+      validator: function (text) {
         return text.length > 0
       },
       message: "Empty name is not allowed"
