@@ -5,7 +5,6 @@ module.exports = mongoose.model('User', Schema({
   _id: Schema.Types.ObjectId,
   name: {
     types: String,
-    required: true,
     validate: {
       validator: function (text) {
         return text.length > 0

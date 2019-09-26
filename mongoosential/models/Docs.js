@@ -6,7 +6,6 @@ module.exports = mongoose.model('Docs', Schema({
   title: String,
   description: String,
   user: {
-    required: true,
     type: Schema.Types.ObjectId,
     ref: 'User'
   }
