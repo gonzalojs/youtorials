@@ -12,9 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.6.2",
-    "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.2",
-    "@babel/register": "^7.6.2",
     "babel-watch": "^7.0.0"
+  },
+  "dependencies": {
+    "braces": "^2.3.1"
   }
 }
